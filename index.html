@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie-edge">
+    <title>Hi Lyddie</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            background: #666;
+            font-family: helvetica neue;
+        }
+
+        .lyrics-container {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .lyric {
+            font-size: 2rem;
+            position: relative;
+            white-space: nowrap;
+            color: white;
+        }
+
+        .lyric:after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: coral;
+            overflow: hidden;
+            width: 0;
+        }
+
+        .animate:after {
+            animation-duration: 3s;
+            animation-name: run-text;
+            animation-timing-function: linear;
+        }
+
+        @keyframes run-text {
+            from {
+                width: 0
+            }
+            to {
+                width: 100%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="lyrics-container">
+        <span id="lyric" class="lyric"></span>
+    </div>
+
+    <script>
+        ((window) => {
+            var lyrics = [
+                'Love\'s such a delicate thing we do',
+                'with nothing to prove',
+                'which I never knew',
+                '[dramatic pause]',
+                'What\'s up?'
+            ];
+
+            var animateClass = ' animate';
+
+            var lyricEl = document.getElementById('lyric');
+
+            var line = 0;
+
+            lyricEl.onclick = () => {
+                console.log('click');
+                console.log(lyricEl.className.indexOf(animateClass));
+                if(lyricEl.className.indexOf(animateClass) === -1) {
+                    lyricEl.className += animateClass;
+                }
+            };
+
+            lyricEl.setAttribute('data-text', lyrics[line]);
+            lyricEl.innerHTML = lyrics[line];
+
+            lyricEl.addEventListener('webkitAnimationEnd', () => {
+                line++;
+
+                if (!lyrics[line]) {
+                    return;
+                }
+
+                lyricEl.className = lyricEl.className.replace(animateClass, '');
+
+                lyricEl.setAttribute('data-text', lyrics[line]);
+                lyricEl.innerHTML = lyrics[line];
+
+                setTimeout(() => {
+                    lyricEl.className += ' animate';
+                }, 300);
+            });
+        })(window)
+    </script>
+</body>
+
+</html>
