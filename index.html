@@ -11,8 +11,20 @@
 
     <style>
         body {
-            background: #666;
+            background: #000;
             font-family: helvetica neue;
+        }
+
+        .video-container {
+            align-items: center;
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        video {
+            opacity: 0.8;
+            width: 100%;
         }
 
         .lyrics-container {
@@ -20,6 +32,9 @@
             justify-content: center;
             display: flex;
             height: 100vh;
+            left: 0;
+            position: absolute;
+            top: 0;
             width: 100vw;
         }
 
@@ -46,6 +61,10 @@
             animation-timing-function: linear;
         }
 
+        .animate.end-animate:after {
+            width: 100%;
+        }
+
         @keyframes run-text {
             from {
                 width: 0
@@ -58,6 +77,14 @@
 </head>
 
 <body>
+    <div class="video-container">
+        <video preload autoplay loop>
+            <source src="test.mp4" type="video/mp4">
+            <source src="test.webm" type="video/webm">
+            <source src="test.ogv" type="video/ogg">
+        </video>
+    </div>
+
     <div class="lyrics-container">
         <span id="lyric" class="lyric"></span>
     </div>
@@ -68,8 +95,8 @@
                 'Love\'s such a delicate thing we do',
                 'with nothing to prove',
                 'which I never knew',
-                '[dramatic pause]',
-                'What\'s up?'
+                '           ',
+                'Will you marry me?'
             ];
 
             var animateClass = ' animate';
@@ -79,8 +106,6 @@
             var line = 0;
 
             lyricEl.onclick = () => {
-                console.log('click');
-                console.log(lyricEl.className.indexOf(animateClass));
                 if(lyricEl.className.indexOf(animateClass) === -1) {
                     lyricEl.className += animateClass;
                 }
@@ -92,11 +117,14 @@
             lyricEl.addEventListener('webkitAnimationEnd', () => {
                 line++;
 
+                lyricEl.className += ' end-animate';
+
                 if (!lyrics[line]) {
                     return;
                 }
 
                 lyricEl.className = lyricEl.className.replace(animateClass, '');
+                lyricEl.className = lyricEl.className.replace(/ end-animate/, '');
 
                 lyricEl.setAttribute('data-text', lyrics[line]);
                 lyricEl.innerHTML = lyrics[line];
