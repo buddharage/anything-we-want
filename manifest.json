@@ -1,0 +1,23 @@
+{
+  "name": "To Lydia",
+  "short_name": "To Lydia",
+  "icons": [
+    {
+      "src": "icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }, {
+      "src": "icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }, {
+      "src": "icons/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#444444",
+  "theme_color": "#BF5FFF"
+}
