@@ -65,6 +65,10 @@
             animation-timing-function: linear;
         }
 
+        .animate.animate-short:after {
+            animation-duration: 1s;
+        }
+
         .animate.end-animate:after {
             width: 100%;
         }
@@ -99,12 +103,13 @@
                 'Love\'s such a delicate thing we do',
                 'with nothing to prove',
                 'which I never knew',
-                '        ',
+                '     ',
                 'Will you marry me?'
             ];
 
             var animateClass = 'animate';
             var endAnimateClass = 'end-animate';
+            var animateShortClass = 'animate-short';
 
             var lyricEl = document.getElementById('lyric');
 
@@ -131,12 +136,17 @@
                 }
 
                 lyricEl.classList.remove(animateClass);
+                lyricEl.classList.remove(animateShortClass);
                 lyricEl.classList.remove(endAnimateClass);
 
                 lyricEl.setAttribute('data-text', lyrics[line]);
                 lyricEl.innerHTML = lyrics[line];
 
                 setTimeout(() => {
+                    if(lyrics[line] === '     ' || lyrics[line] === 'Will you marry me?') {
+                        lyricEl.classList.add(animateShortClass);
+                    }
+
                     lyricEl.classList.add(animateClass);
                 }, 300);
             });
