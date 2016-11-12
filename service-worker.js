@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var cacheName = 'tolydia-1';
+var cacheName = 'tolydia-1.1';
 var filesToCache = [
     'index.html',
     'sunset.mp4'
