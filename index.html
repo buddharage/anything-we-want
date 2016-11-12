@@ -82,7 +82,7 @@
 
 <body>
     <div class="video-container">
-        <video preload autoplay loop>
+        <video id="video" preload loop>
             <source src="test.mp4" type="video/mp4">
             <source src="test.webm" type="video/webm">
             <source src="test.ogv" type="video/ogg">
@@ -110,6 +110,8 @@
             var line = 0;
 
             lyricEl.onclick = () => {
+                document.getElementById('video').play();
+
                 if(lyricEl.className.indexOf(animateClass) === -1) {
                     lyricEl.className += animateClass;
                 }
