@@ -21,6 +21,10 @@
             font-family: helvetica neue;
         }
 
+        audio {
+            display: none;
+        }
+
         #video-container {
             align-items: center;
             display: flex;
@@ -79,7 +83,7 @@
         }
 
         .animate:after {
-            animation-duration: 4s;
+            animation-duration: 3.3s;
             animation-name: run-text;
             animation-timing-function: linear;
         }
@@ -108,6 +112,8 @@
 </head>
 
 <body>
+    <audio id="audio" src="song-cut.mp3" preload controls></audio>
+
     <div id="video-container">
         <video id="video" preload loop>
             <source src="sunset.mp4" type="video/mp4">
@@ -143,6 +149,7 @@
 
             lyricEl.onclick = () => {
                 document.getElementById('video').play();
+                document.getElementById('audio').play();
 
                 if(lyricEl.className.indexOf(animateClass) === -1) {
                     lyricEl.classList.add(animateClass);

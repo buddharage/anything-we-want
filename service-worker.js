@@ -12,10 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var cacheName = 'tolydia-1.1';
+var cacheName = 'tolydia-1.2';
 var filesToCache = [
     'index.html',
-    'sunset.mp4'
+    'sunset.mp4',
+    'song-cut.mp3'
 ];
 
 self.addEventListener('install', function(e) {
